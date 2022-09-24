@@ -2,6 +2,7 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const sum = require('./sum.js');
 const primes = require('./primes.js');
 const fs = require('fs');
 
@@ -17,6 +18,10 @@ app.get('/isPrime/:number', function(req, res){
     res.status(200).send(primes.isPrime(req.params.number));    
 })
 
+app.get('/sum/:num_1/:num_2', function(req, res){
+    res.status(200).send(sum.sum(parseInt(req.params.num_1),parseInt(req.params.num_2)).toString());
+})
+	    
 exports.stop = function(){
     server.close();
 }
